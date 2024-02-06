@@ -1,6 +1,6 @@
 
 export default function Home() {
-  const port = process.env.DEV_PORT;
+  const port = process.env.PORT;
   console.log('ENV: '+ port);
 
   return (
