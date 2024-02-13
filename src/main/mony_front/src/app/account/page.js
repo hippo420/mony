@@ -8,6 +8,10 @@ export default function Account() {
             <h1>My Custom Calendar</h1>
             <CustomCalendar />
         </div>
+        <div>
+            <MyCalendar />
+        </div>
+    
     </div>
     );
     
