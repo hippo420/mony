@@ -1,14 +1,12 @@
 import CustomCalendar from '../components/CustomCalendar';
+import MyCalendar from '../components/MyCalendar';
 
 export default function Account() {
     
     return (
     <div>
         <div>
-            <h1>My Custom Calendar</h1>
-            <CustomCalendar />
-        </div>
-        <div>
+            <h1>Mony Calendar</h1>
             <MyCalendar />
         </div>
     

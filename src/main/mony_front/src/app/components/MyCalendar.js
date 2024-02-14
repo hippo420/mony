@@ -1,22 +1,45 @@
 //https://dhdl-it.tistory.com/60
-import dayGridPlugin from '@fullcalendar/daygrid';
-import FullCalendar from '@fullcalendar/react';
-import { Component } from 'react';
+// pages/calendar.js
+'use client'
 
-class MyCalendar extends Component {
-    render() {
-        return (
-            <div className="App">
-                <FullCalendar
-                defaultView="dayGridMonth"
-                plugins={[ dayGridPlugin ]}
-                events={[
-                    { title: 'event 1', date: '2022-09-01' },
-                    { title: 'event 2', date: '2022-09-02' }
-                ]}
-                />
-            </div>
-        );
-    }
-}
+import { useEffect, useState } from 'react';
+import Calendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+const MyCalendar = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    // 예시로 사용할 이벤트 데이터를 가져오는 비동기 함수
+    const fetchEvents = async () => {
+      // 예시 데이터를 가져올 때 사용할 API 호출 등을 여기에 작성
+      const data = [
+        {
+          title: '이벤트 1',
+          start: '2024-02-14',
+        },
+        {
+          title: '이벤트 2',
+          start: '2024-02-15',
+        },
+        // 추가적인 이벤트 데이터를 가져올 수 있음
+      ];
+      setEvents(data);
+    };
+
+    fetchEvents();
+  }, []);
+
+  return (
+    <div>
+      <h1>캘린더</h1>
+      <Calendar
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        events={events}
+      />
+    </div>
+  );
+};
+
 export default MyCalendar;

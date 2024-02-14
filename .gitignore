@@ -38,3 +38,4 @@ out/
 
 #Front
 /mony_front/**
+src/main/mony_front/package-lock.json
