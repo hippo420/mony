@@ -1,0 +1,50 @@
+.container {
+    position: relative;
+  }
+
+.modal {
+display: none;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fefefe;
+padding: 20px;
+border: 1px solid #888;
+border-radius: 8px;
+transition: opacity 0.5s, transform 0.5s;
+opacity: 0;
+}
+
+.modal.show {
+display: block;
+opacity: 1;
+transform: translate(-50%, -50%) scale(1);
+}
+
+.modal_content {
+width: 300px;
+}
+
+.close {
+position: absolute;
+top: 10px;
+right: 10px;
+cursor: pointer;
+}
+
+.calendar_container {
+margin-top: 20px;
+}
+
+/* 일요일 날짜 빨간색 */
+.fc-day-sun a {
+    color: red;
+    text-decoration: none;
+  }
+  
+  /* 토요일 날짜 파란색 */
+.fc-day-sat a {
+    color: blue;
+    text-decoration: none;
+}
