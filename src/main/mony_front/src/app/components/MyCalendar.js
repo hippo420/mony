@@ -5,6 +5,43 @@
 import { useEffect, useState } from 'react';
 import Calendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import style from './MyCalendar.module.css';
+import styled from "@emotion/styled";
+
+const SERVICE_NAME ='';
+
+
+export const StyleWrapper = styled.div`
+  .fc td {
+    background: whtie;
+  }
+  .fc-event-title fc-sticky{
+    background: red;
+  }
+  .fc .fc-daygrid-day.fc-day-today {
+    background-color: #fff8bd;
+    color: #356eff;
+  }
+  .fc-event {
+    cursor: pointer;
+    padding: 5px 8px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .fc-h-event{
+    background : white;
+  }
+  .fc-day-sat a{
+    color: blue;
+    text-decoration:none;
+  }
+  .fc-day-sun a{
+    color: red;
+    text-decoration:none;
+  }
+`
 
 const MyCalendar = () => {
   const [events, setEvents] = useState([]);
@@ -16,13 +53,20 @@ const MyCalendar = () => {
       // 예시 데이터를 가져올 때 사용할 API 호출 등을 여기에 작성
       const data = [
         {
-          title: '이벤트 1',
+          title: '100,000',
+          textColor : 'blue',
           start: '2024-02-14',
           description: '이벤트 1의 설명',
         },
         {
-          title: '이벤트 2',
+          title: '1,000,000',
+          textColor : 'blue',
           start: '2024-02-15',
+          description: '이벤트 2의 설명',
+        },{
+          title: '-50,000',
+          textColor : 'red',
+          start: '2024-02-14',
           description: '이벤트 2의 설명',
         },
         // 추가적인 이벤트 데이터를 가져올 수 있음
@@ -36,6 +80,7 @@ const MyCalendar = () => {
   //이벤트 클릭
   const handleEventClick = (clickInfo) => {
     //alert(`클릭된 이벤트: ${clickInfo.event.title}`);
+    alert('달려컴포넌트 클릭');
     handleCloseModal(clickInfo.event);
   };
 
@@ -45,11 +90,11 @@ const MyCalendar = () => {
   };
 
   return (
-    <div className="container">
+    <div className={style.container}>
       <h1>캘린더</h1>
-      <div className={`modal ${selectedEvent ? 'show' : ''}`}>
-        <div className="modal-content">
-          <span className="close" onClick={handleCloseModal}>&times;</span>
+      <div className={`style.modal ${selectedEvent ? 'show' : ''}`}>
+        <div className={style.modal_content}>
+          <span className={style.close} onClick={handleCloseModal}>&times;</span>
           {selectedEvent && (
             <div>
               <h2>{selectedEvent.title}</h2>
@@ -58,54 +103,16 @@ const MyCalendar = () => {
           )}
         </div>
       </div>
-      <div className="calendar-container">
-        <Calendar
-          plugins={[dayGridPlugin]}
-          initialView="dayGridMonth"
-          events={events}
-          eventClick={handleEventClick} // 클릭 이벤트 핸들러 등록
-        />
+      <div className={style.calendar_container}>
+        <StyleWrapper>
+          <Calendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            events={events}
+            eventClick={handleEventClick} // 클릭 이벤트 핸들러 등록
+          />  
+        </StyleWrapper>
       </div>
-      <style jsx>{`
-        .container {
-          position: relative;
-        }
-
-        .modal {
-          display: none;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background-color: #fefefe;
-          padding: 20px;
-          border: 1px solid #888;
-          border-radius: 8px;
-          transition: opacity 0.5s, transform 0.5s;
-          opacity: 0;
-        }
-
-        .modal.show {
-          display: block;
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(1);
-        }
-
-        .modal-content {
-          width: 300px;
-        }
-
-        .close {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          cursor: pointer;
-        }
-
-        .calendar-container {
-          margin-top: 20px;
-        }
-      `}</style>
     </div>
   );
 };
