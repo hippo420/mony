@@ -1,4 +1,4 @@
-package app.mony.system.login;
+package app.mony.fw.sy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,5 +34,6 @@ public class Member {
     @Column(name = "THUMBS")
     private String thumbs;
 
-
+    @Column(name = "SALT")
+    private String salt;
 }

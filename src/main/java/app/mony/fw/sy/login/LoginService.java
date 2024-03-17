@@ -1,23 +1,23 @@
-package app.mony.system.login;
+package app.mony.fw.sy.login;
 
+import app.mony.fw.sy.Member;
+import app.mony.fw.sy.MemberRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.net.http.HttpResponse;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
+@Slf4j
 @Service
 public class LoginService {
 
     @Autowired
-    private  MemberRepository memberRepository;
+    private MemberRepository memberRepository;
     public Member prcLogin(HttpServletRequest request, HttpServletResponse response, Member member){
 
 
@@ -63,13 +63,22 @@ public class LoginService {
 
         if(member.getUserId().equals(user.getUserId())
                 && member.getPassword().equals(user.getPassword())){
-            System.out.println("로그인성공");
+            log.info("USER = {} 로그인 시간 ={}", member.getUserId(),System.currentTimeMillis());
             return true;
         }
         else{
-            System.out.println("비번틀림");
+            log.info("해당 사용자 찾을수 없음");
             return false;
         }
     }
 
+    public void prcLogout(HttpServletRequest request, HttpServletResponse response, Member member) {
+
+        HttpSession session = request.getSession(false);
+        session.invalidate();
+    }
+
+    public void registUser(Member member) {
+        memberRepository.save(member);
+    }
 }
