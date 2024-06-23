@@ -1,4 +1,4 @@
-package app.mony.mony.sy.login;
+package app.mony.mony.sy.member;
 
 import app.mony.system.utils.ChiperUtil;
 import jakarta.servlet.http.Cookie;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 @Slf4j
 @Service
-public class LoginService {
+public class MemberService {
 
     @Autowired
     private MemberJpaRepository memberJPARepository;

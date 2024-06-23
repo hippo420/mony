@@ -1,4 +1,4 @@
-package app.mony.mony.sy.login;
+package app.mony.mony.sy.member;
 
 import jakarta.persistence.*;
 import lombok.*;

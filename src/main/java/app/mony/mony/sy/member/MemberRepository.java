@@ -1,8 +1,6 @@
-package app.mony.mony.sy.login;
+package app.mony.mony.sy.member;
 
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public class MemberRepository {

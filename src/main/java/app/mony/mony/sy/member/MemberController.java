@@ -1,4 +1,4 @@
-package app.mony.mony.sy.login;
+package app.mony.mony.sy.member;
 
 import app.mony.system.utils.ChiperUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class MemberController {
 
     @Autowired
-    private LoginService loginService;
+    private MemberService memberService;
 
     @RequestMapping("/regist")
     public void regist(@RequestBody Member member){
@@ -24,14 +24,14 @@ public class LoginController {
         member.setUSERPWD(ChiperUtil.sha256Salt(inputPassword,salt));
 
 
-        loginService.registUser(member);
+        memberService.registUser(member);
     }
 
     @RequestMapping("/prcLogin")
     public Member prcLogin(HttpServletRequest request, HttpServletResponse response,  @RequestBody Member member){
         log.info("prcLogin");
         log.info("Login => [{}] [{}]",member.getUSERID(), member.getUSERPWD());
-        Member user = loginService.prcLogin(request, response, member);
+        Member user = memberService.prcLogin(request, response, member);
 
         return user;
     }
@@ -39,7 +39,7 @@ public class LoginController {
     @RequestMapping("/prcLogout")
     public void prcLogout(HttpServletRequest request, HttpServletResponse response, @RequestBody Member member){
         log.info("prcLogout");
-        loginService.prcLogout(request,response,member);
+        memberService.prcLogout(request,response,member);
     }
 
     @RequestMapping("/prcLogin1")
